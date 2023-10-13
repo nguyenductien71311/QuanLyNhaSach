@@ -1,0 +1,59 @@
+<div class="card">
+  <h4 class="card-header bg-info d-flex justify-content-between text-white">
+    Products
+  </h4>
+  <div class="card-body">
+    {{#if this.empty}}
+    <h5 class="card-title">
+      Không có sản phẩm
+    </h5>
+    {{else}}
+    <form action="/cart/add" method="post" id="frmAdditem">
+      <input type="hidden" name="id" id='id'>
+      <input type="hidden" name="quantity" value="1">
+    </form>
+    <div class="row">
+      {{#each products}}
+      <div class="col-sm-4 mb-3">
+        <div class="card h-100">
+          <img src="/public/pid/{{ProID}}/main_thumbs.jpg" alt="{{ProName}}" srcset="">
+          <div class="card-body">
+            <h4 class="card-title">{{ProName}}</h4>
+            <h5 class="card-title text-danger">{{Price}} $</h5>
+            <p class="card-text">{{TinyDes}}</p>
+          </div>
+          
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {{#each this.pageNumberList}}
+
+          {{#if currentPage}}
+          <li class="page-item active"><a class="page-link" href="javascript:;">{{value}}</a>
+          </li>
+          {{else}}
+          <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+          {{/if}}
+
+          {{/each}}
+
+          <li class="page-item">
+            <a class="page-link" href="?page={{PageNumber}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    {{/if}}
+  </div>
+</div>
